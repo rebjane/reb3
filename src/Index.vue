@@ -1,19 +1,19 @@
 <template>
-  <div id="app">
-    <Menu />
+  <div id="index">
+    <!-- <HomePage /> -->
     <router-view />
   </div>
 </template>
 
 <script>
 // import HomePage from "./components/HomePage.vue";
-import Menu from "./components/Menu.vue";
+// import Menu from "./components/Menu.vue";
 
 export default {
   name: "App",
   components: {
     // HomePage,
-    Menu,
+    // Menu,
   },
 };
 </script>
@@ -26,8 +26,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   // color: #2c3e50;
-  padding: 0 5%;
-
   margin-top: 30px;
 }
 </style>

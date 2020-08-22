@@ -1,0 +1,29 @@
+a {
+  color: black;
+}
+
+$mobile: 600px;
+$tablet: 800px;
+$notebook: 1024px;
+$laptop: 1440px;
+$desktop: 1600px;
+$ultra: 1920px;
+
+$desktoppad: 15%;
+
+// Breakpoints
+@mixin above($size) {
+  @media screen and (min-width: $size + 1) {
+    @content;
+  }
+}
+
+@mixin below($size) {
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}
+
+body {
+  margin: 0;
+}

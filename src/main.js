@@ -1,8 +1,17 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import Index from "./Index.vue";
+import { prismicData } from "./prismic.js";
+import store from "./store.js";
+import routes from "./router.js";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+prismicData.fetchData().then(() => {
+  new Vue({
+    el: "#app",
+    router: routes,
+    prismicData,
+    store,
+    render: (h) => h(Index),
+  });
+});
