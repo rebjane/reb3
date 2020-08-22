@@ -33,7 +33,7 @@ class Prismic {
           });
           const loadWork = new Promise((res) => {
             Vue.prototype.$work = this.data.filter((x) => x.type === "work");
-            console.log(Vue.prototype.$work);
+            // console.log(Vue.prototype.$work);
 
             res(Vue.prototype.$work);
           });
@@ -41,7 +41,7 @@ class Prismic {
             Vue.prototype.$contact_page = this.data
               .filter((x) => x.type === "home_page")[0]
               .data.body.filter((x) => x.slice_type === "ContactSection");
-            console.log(Vue.prototype.$contact_page[0]);
+            // console.log(Vue.prototype.$contact_page[0]);
 
             res(Vue.prototype.$contact_page);
           });

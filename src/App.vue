@@ -1,6 +1,10 @@
 <template>
   <div id="app">
+    <div class="logo-container">
+      <Logo />
+    </div>
     <Menu />
+
     <router-view />
   </div>
 </template>
@@ -8,12 +12,14 @@
 <script>
 // import HomePage from "./components/HomePage.vue";
 import Menu from "./components/Menu.vue";
+import Logo from "./Logo.vue";
 
 export default {
   name: "App",
   components: {
     // HomePage,
     Menu,
+    Logo,
   },
 };
 </script>
@@ -29,5 +35,10 @@ export default {
   padding: 0 5%;
 
   margin-top: 30px;
+}
+.logo {
+  width: 60px;
+  text-align: center;
+  display: inline-block;
 }
 </style>

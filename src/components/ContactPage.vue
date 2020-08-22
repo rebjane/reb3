@@ -1,5 +1,7 @@
 <template>
-  <div class="ContactPage">contact page</div>
+  <div class="ContactPage">
+    <input v-for="(item, i) in $contact_page[0].items" :key="i" :is="item.input_type" />
+  </div>
 </template>
 
 <script>
@@ -7,6 +9,9 @@ export default {
   name: "ContactPage",
   props: {
     msg: String,
+  },
+  mounted() {
+    console.log(this.$contact_page[0].items);
   },
 };
 </script>

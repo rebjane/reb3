@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <ul v-if="$menu">
+    <ul v-if="$menu" class="desktop-menu">
       <li v-for="(item, i) in $menu" :key="i">
         <a
           :href="$cms.textField(item.link)"
@@ -8,6 +8,7 @@
         >{{$cms.textField(item.link_name)}}</a>
       </li>
     </ul>
+    <ul v-if="$menu" class="mobile-menu">===</ul>
   </div>
 </template>
 
@@ -34,7 +35,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+@import "../styles.scss";
+
 h3 {
   margin: 40px 0 0;
 }
@@ -49,7 +52,18 @@ li {
 }
 a {
   text-decoration: none;
-  font-size: 20px;
+  font-size: 12px;
+  padding: 0 3em;
   text-transform: uppercase;
+}
+.desktop-menu {
+  @include below($tablet) {
+    display: none;
+  }
+}
+.mobile-menu {
+  @include above($tablet) {
+    display: none;
+  }
 }
 </style>

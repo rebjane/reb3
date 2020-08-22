@@ -1,11 +1,12 @@
 <template>
   <div class="work-page">
+    <div class="desc" v-if="desc">{{desc}}</div>
     <div class="grid">
       <div :ref="`item-${i}`" class="grid-item" v-for="(item, i) in work" :key="i">
-        <a :href="item.uid">
-          <!-- {{item.uid}} -->
-          <img :src="item.data.feature_image.url" />
-        </a>
+        <!-- <a :href="item.uid">  work on this later-->
+        <!-- {{item.uid}} -->
+        <img :src="item.data.feature_image.url || item.data.anim_link.url" />
+        <!-- </a> -->
       </div>
     </div>
   </div>
@@ -28,6 +29,7 @@ export default {
       row1: 0,
       row2: 0,
       row3: 0,
+      desc: null,
     };
   },
   beforeDestroy() {},
@@ -42,19 +44,16 @@ export default {
     },
     gridPositioning() {
       for (let i = 0; i < this.work.length; i++) {
-        console.log(this.$refs[`item-${i}`][0].style);
+        // console.log(this.$refs[`item-${i}`][0].style);
         if (i % 3 === 0) {
-          console.log(i);
           this.$refs[`item-${i}`][0].style = `top: ${this.row1}px`;
           this.row1 += this.$refs[`item-${i}`][0].offsetHeight;
         }
         if (i % 3 === 1) {
-          console.log(i);
           this.$refs[`item-${i}`][0].style = `top: ${this.row2}px`;
           this.row2 += this.$refs[`item-${i}`][0].offsetHeight;
         }
         if (i % 3 === 2) {
-          console.log(i);
           this.$refs[`item-${i}`][0].style = `top: ${this.row3}px`;
           this.row3 += this.$refs[`item-${i}`][0].offsetHeight;
         }
@@ -73,7 +72,13 @@ export default {
       this.row3 = 0;
       this.gridPositioning();
     });
-    // console.log(this.work);
+
+    this.desc = this.$cms.textField(
+      this.$menu.filter(
+        (x) =>
+          this.$cms.textField(x.link_name).toLowerCase() === this.currentSlug
+      )[0].description
+    );
   },
 };
 </script>
@@ -81,7 +86,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "../styles.scss";
-
+.work-page {
+  padding-top: 100px;
+}
 .grid {
   position: relative;
   height: 100%;
@@ -104,5 +111,9 @@ export default {
   img {
     width: 100%;
   }
+}
+.desc {
+  padding-bottom: 50px;
+  font-size: 40px;
 }
 </style>
