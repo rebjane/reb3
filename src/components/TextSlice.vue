@@ -1,10 +1,15 @@
 <template>
-  <div class="specific-work-page"></div>
+  <div class="text-slice">
+    <div class="text-slice-inner">
+      <h2>{{$cms.textField(data.text_title)}}</h2>
+      <p>{{$cms.textField(data.text_body)}}</p>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "WorkPage",
+  name: "Menu",
   components: {},
   props: {
     data: {
@@ -27,26 +32,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "../styles.scss";
-
-.grid {
-  position: relative;
-  height: 100%;
-}
-.grid-item {
-  width: 33%;
-  top: 0;
+.text-slice-inner {
   @include above($tablet) {
-    transition: all 1s ease;
-    position: absolute;
-    &:nth-child(3n + 2) {
-      left: 33%;
-    }
-    &:nth-child(3n + 3) {
-      left: 66%;
-    }
+    max-width: 50%;
   }
-  img {
-    width: 100%;
-  }
+  margin: auto;
+}
+h2 {
+  font-family: $suisse;
 }
 </style>

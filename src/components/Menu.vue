@@ -106,7 +106,7 @@ a {
   li {
     padding: 20px 0;
   }
-  position: relative;
+  // position: relative;
   @include above($tablet) {
     display: none;
   }
@@ -121,12 +121,15 @@ a {
   .dropdown {
     position: absolute;
     text-align: center;
-    width: 100%;
+    // width: 100%;
     background: lightgrey;
     z-index: 2;
     max-height: 0;
+    left: -100%;
+    width: 200%;
     overflow: hidden;
     transition: max-height 0.5s ease;
+    top: 100%;
   }
 }
 .menu {

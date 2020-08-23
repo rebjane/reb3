@@ -2,6 +2,7 @@
   <div class="logo">
     <!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
     <svg
+      :fill="fill"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -45,9 +46,9 @@ export default {
   name: "Menu",
   components: {},
   props: {
-    data: {
-      type: Object,
-      default: null,
+    fill: {
+      type: String,
+      default: "black",
     },
   },
   data() {

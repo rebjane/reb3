@@ -8,6 +8,9 @@ export default {
   props: {
     msg: String,
   },
+  mounted() {
+    window.location.href = "/illustration"; //hard re-direct for now, til i design the home page
+  },
 };
 </script>
 
