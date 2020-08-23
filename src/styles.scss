@@ -27,3 +27,41 @@ $desktoppad: 15%;
 body {
   margin: 0;
 }
+
+.page {
+  padding-top: 100px;
+}
+
+$acpath: "/fonts/AcuminProWide-Light";
+$acpathit: "/fonts/AcuminProWideBook-Italic";
+$supath: "/fonts/SuisseWorks-Light";
+$acumin: "Acumin Pro Wide";
+$suisse: "Suisse Works";
+$acit: "Acumin Pro Wide Italic";
+$bg: #161616;
+@font-face {
+  font-family: "Acumin Pro Wide";
+  src: url($acpath+".eot");
+  src: url($acpath+".eot?#iefix") format("embedded-opentype"),
+    url($acpath+".woff2") format("woff2"), url($acpath+".woff") format("woff"),
+    url($acpath+".ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Suisse Works";
+  src: url($supath+".eot");
+  src: url($supath+".eot?#iefix") format("embedded-opentype"),
+    url($supath+".woff2") format("woff2"), url($supath+".woff") format("woff"),
+    url($supath+".ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Acumin Pro Wide Italic";
+  src: url($acpathit+".ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

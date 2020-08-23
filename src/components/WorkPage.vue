@@ -1,6 +1,7 @@
 <template>
-  <div class="work-page">
+  <div class="work-page page">
     <div class="desc" v-if="desc">{{desc}}</div>
+    <!-- <SlidingText v-if="desc" :text="desc" /> -->
     <div class="grid">
       <div :ref="`item-${i}`" class="grid-item" v-for="(item, i) in work" :key="i">
         <!-- <a :href="item.uid">  work on this later-->
@@ -13,9 +14,12 @@
 </template>
 
 <script>
+// import SlidingText from "./SlidingText.vue";
 export default {
   name: "WorkPage",
-  components: {},
+  components: {
+    // SlidingText,
+  },
   props: {
     data: {
       type: Object,
@@ -47,15 +51,15 @@ export default {
         // console.log(this.$refs[`item-${i}`][0].style);
         if (i % 3 === 0) {
           this.$refs[`item-${i}`][0].style = `top: ${this.row1}px`;
-          this.row1 += this.$refs[`item-${i}`][0].offsetHeight;
+          this.row1 += this.$refs[`item-${i}`][0].offsetHeight - 5;
         }
         if (i % 3 === 1) {
           this.$refs[`item-${i}`][0].style = `top: ${this.row2}px`;
-          this.row2 += this.$refs[`item-${i}`][0].offsetHeight;
+          this.row2 += this.$refs[`item-${i}`][0].offsetHeight - 5;
         }
         if (i % 3 === 2) {
           this.$refs[`item-${i}`][0].style = `top: ${this.row3}px`;
-          this.row3 += this.$refs[`item-${i}`][0].offsetHeight;
+          this.row3 += this.$refs[`item-${i}`][0].offsetHeight - 5;
         }
       }
     },
@@ -86,9 +90,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "../styles.scss";
-.work-page {
-  padding-top: 100px;
-}
+
 .grid {
   position: relative;
   height: 100%;
@@ -114,6 +116,8 @@ export default {
 }
 .desc {
   padding-bottom: 50px;
-  font-size: 40px;
+  font-size: 30px;
+  font-family: $suisse;
+  text-transform: capitalize;
 }
 </style>
