@@ -6,12 +6,14 @@
     <Menu />
 
     <router-view />
+    <Footer />
   </div>
 </template>
 
 <script>
 // import HomePage from "./components/HomePage.vue";
 import Menu from "./components/Menu.vue";
+import Footer from "./components/Footer.vue";
 import Logo from "./Logo.vue";
 
 export default {
@@ -20,6 +22,7 @@ export default {
     // HomePage,
     Menu,
     Logo,
+    Footer,
   },
 };
 </script>

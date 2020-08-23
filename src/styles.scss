@@ -29,7 +29,10 @@ body {
 }
 
 .page {
-  padding-top: 100px;
+  padding-top: 50px;
+  @include below($tablet) {
+    padding-top: 20px;
+  }
 }
 
 $acpath: "/fonts/AcuminProWide-Light";

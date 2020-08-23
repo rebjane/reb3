@@ -2,7 +2,7 @@
   <div class="work-page page">
     <div class="desc" v-if="desc">{{desc}}</div>
     <!-- <SlidingText v-if="desc" :text="desc" /> -->
-    <div class="grid">
+    <div class="grid" ref="grid">
       <div :ref="`item-${i}`" class="grid-item" v-for="(item, i) in work" :key="i">
         <!-- <a :href="item.uid">  work on this later-->
         <!-- {{item.uid}} -->
@@ -50,26 +50,31 @@ export default {
       for (let i = 0; i < this.work.length; i++) {
         // console.log(this.$refs[`item-${i}`][0].style);
         if (i % 3 === 0) {
-          this.$refs[`item-${i}`][0].style = `top: ${this.row1}px`;
+          this.$refs[`item-${i}`][0].style = `top: ${this.row1}px; opacity: 1;`;
           this.row1 += this.$refs[`item-${i}`][0].offsetHeight - 5;
         }
         if (i % 3 === 1) {
-          this.$refs[`item-${i}`][0].style = `top: ${this.row2}px`;
+          this.$refs[`item-${i}`][0].style = `top: ${this.row2}px; opacity: 1;`;
           this.row2 += this.$refs[`item-${i}`][0].offsetHeight - 5;
         }
         if (i % 3 === 2) {
-          this.$refs[`item-${i}`][0].style = `top: ${this.row3}px`;
+          this.$refs[`item-${i}`][0].style = `top: ${this.row3}px; opacity: 1;`;
           this.row3 += this.$refs[`item-${i}`][0].offsetHeight - 5;
         }
       }
+      var highest = Math.max.apply(Math, [this.row1, this.row2, this.row3]);
+      this.$refs.grid.style = `max-height: ${highest}px; height: ${highest}px; `;
     },
   },
   mounted() {
     //filer the "$this.work by th "type_of_work" matching slug
     this.loadWork();
-    setTimeout(() => {
-      this.gridPositioning();
-    }, 500);
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.gridPositioning();
+      }, 100);
+    });
+
     window.addEventListener("resize", () => {
       this.row1 = 0;
       this.row2 = 0;
@@ -94,10 +99,14 @@ export default {
 .grid {
   position: relative;
   height: 100%;
+  text-align: center;
+  max-height: 0;
+  transition: max-height 0.5s ease;
 }
 .grid-item {
   top: 0;
   width: 100%;
+  opacity: 0;
   @include above($tablet) {
     width: 33%;
 
