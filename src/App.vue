@@ -38,10 +38,20 @@ export default {
   padding: 0 5%;
 
   margin-top: 30px;
+  @include below($tablet) {
+    margin-top: 10px;
+  }
 }
 .logo {
   width: 60px;
   text-align: center;
   display: inline-block;
+}
+.logo-container {
+  @include below($tablet) {
+    width: 50%;
+    text-align: left;
+    display: inline-block;
+  }
 }
 </style>

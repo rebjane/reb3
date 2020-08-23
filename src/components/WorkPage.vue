@@ -76,11 +76,19 @@ export default {
     });
 
     window.addEventListener("resize", () => {
-      this.row1 = 0;
-      this.row2 = 0;
-      this.row3 = 0;
-      this.gridPositioning();
+      setTimeout(() => {
+        this.row1 = 0;
+        this.row2 = 0;
+        this.row3 = 0;
+        this.gridPositioning();
+      }, 400);
     });
+    // window.addEventListener("mouseup", () => {
+    //   this.row1 = 0;
+    //   this.row2 = 0;
+    //   this.row3 = 0;
+    //   this.gridPositioning();
+    // });
 
     this.desc = this.$cms.textField(
       this.$menu.filter(
@@ -102,6 +110,10 @@ export default {
   text-align: center;
   max-height: 0;
   transition: max-height 0.5s ease;
+  @include below($tablet) {
+    height: 100% !important;
+    max-height: 100% !important;
+  }
 }
 .grid-item {
   top: 0;

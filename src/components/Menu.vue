@@ -104,7 +104,7 @@ a {
 }
 .mobile-menu {
   li {
-    padding: 2em 0;
+    padding: 20px 0;
   }
   position: relative;
   @include above($tablet) {
@@ -112,7 +112,7 @@ a {
   }
   border-bottom: 1px solid lightgrey;
 
-  padding: 2em 0;
+  // padding: 20px 0;
   .hamburgermenu {
     cursor: pointer;
     width: 3em;
@@ -128,6 +128,13 @@ a {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
+  }
+}
+.menu {
+  @include below($tablet) {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
   }
 }
 </style>
