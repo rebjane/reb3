@@ -136,6 +136,7 @@ export default {
   }
 }
 .desc {
+  font-weight: bold;
   padding-bottom: 50px;
   font-size: 30px;
   font-family: $suisse;

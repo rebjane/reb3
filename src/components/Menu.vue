@@ -110,7 +110,6 @@ a {
   @include above($tablet) {
     display: none;
   }
-  border-bottom: 1px solid lightgrey;
 
   // padding: 20px 0;
   .hamburgermenu {
@@ -131,10 +130,20 @@ a {
   }
 }
 .menu {
+  position: relative;
   @include below($tablet) {
     width: 50%;
     display: inline-block;
     text-align: right;
+    border-bottom: 1px solid lightgrey;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      border-bottom: 1px solid lightgrey;
+      left: -100%;
+      bottom: -1px;
+    }
   }
 }
 </style>
