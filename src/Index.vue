@@ -87,7 +87,7 @@ export default {
     },
   },
   mounted() {
-    this.noRightClick();
+    // this.noRightClick();
   },
 };
 </script>

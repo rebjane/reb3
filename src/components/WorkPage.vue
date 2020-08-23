@@ -162,6 +162,9 @@ export default {
   top: 0;
   width: 100%;
   opacity: 0;
+  @include below($tablet) {
+    top: 0 !important;
+  }
   @include above($tablet) {
     width: 33%;
 
