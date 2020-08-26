@@ -71,20 +71,41 @@ export default {
       );
       // console.log(this.work);
     },
+    reposition() {
+      setTimeout(() => {
+        this.row1 = 0;
+        this.row2 = 0;
+        this.row3 = 0;
+        this.gridPositioning();
+      }, 400);
+    },
     gridPositioning() {
+      var expectedImageWidth = (window.innerWidth * 0.9) / 3;
       for (let i = 0; i < this.work.length; i++) {
+        // console.log(this.work[i].data.anim_link.height);
+
         // console.log(this.$refs[`item-${i}`][0].style);
+        var height = this.work[i].data.feature_image.dimensions
+          ? this.work[i].data.feature_image.dimensions.height
+          : this.work[i].data.anim_link.height;
+        var width = this.work[i].data.feature_image.dimensions
+          ? this.work[i].data.feature_image.dimensions.width
+          : this.work[i].data.anim_link.width;
+
         if (i % 3 === 0) {
           this.$refs[`item-${i}`][0].style = `top: ${this.row1}px; opacity: 1;`;
-          this.row1 += this.$refs[`item-${i}`][0].offsetHeight - 5;
+          // this.row1 += this.$refs[`item-${i}`][0].offsetHeight - 5;
+          this.row1 += (height / width) * expectedImageWidth;
         }
         if (i % 3 === 1) {
           this.$refs[`item-${i}`][0].style = `top: ${this.row2}px; opacity: 1;`;
-          this.row2 += this.$refs[`item-${i}`][0].offsetHeight - 5;
+          // this.row2 += this.$refs[`item-${i}`][0].offsetHeight - 5;
+          this.row2 += (height / width) * expectedImageWidth;
         }
         if (i % 3 === 2) {
           this.$refs[`item-${i}`][0].style = `top: ${this.row3}px; opacity: 1;`;
-          this.row3 += this.$refs[`item-${i}`][0].offsetHeight - 5;
+          // this.row3 += this.$refs[`item-${i}`][0].offsetHeight - 5;
+          this.row3 += (height / width) * expectedImageWidth;
         }
       }
       var highest = Math.max.apply(Math, [this.row1, this.row2, this.row3]);
@@ -97,25 +118,16 @@ export default {
 
     if (this.work && this.work.length) {
       this.$nextTick(() => {
-        setTimeout(() => {
-          this.gridPositioning();
-        }, 100);
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.gridPositioning();
+          }, 100);
+        });
       });
 
       window.addEventListener("resize", () => {
-        setTimeout(() => {
-          this.row1 = 0;
-          this.row2 = 0;
-          this.row3 = 0;
-          this.gridPositioning();
-        }, 400);
+        this.reposition();
       });
-      // window.addEventListener("mouseup", () => {
-      //   this.row1 = 0;
-      //   this.row2 = 0;
-      //   this.row3 = 0;
-      //   this.gridPositioning();
-      // });
 
       this.desc = this.$cms.textField(
         this.$menu.filter(
@@ -166,15 +178,15 @@ export default {
     top: 0 !important;
   }
   @include above($tablet) {
-    width: 33%;
+    width: calc(100% / 3);
 
     transition: all 0.5s ease;
     position: absolute;
     &:nth-child(3n + 2) {
-      left: 33%;
+      left: calc(100% / 3);
     }
     &:nth-child(3n + 3) {
-      left: 66%;
+      left: calc((100% / 3) * 2);
     }
   }
   img {
