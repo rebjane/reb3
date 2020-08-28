@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <div class="logo-container">
-      <a href="/">
-        <Logo />
-      </a>
+    <div class="main-menu">
+      <div class="logo-container">
+        <a href="/">
+          <Logo />
+        </a>
+      </div>
+      <Menu />
     </div>
-    <Menu />
 
     <router-view />
     <Footer />
@@ -49,7 +51,25 @@ export default {
   text-align: center;
   display: inline-block;
 }
+.menu {
+  @include above($tablet) {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    text-align: right;
+  }
+}
+.main-menu {
+  @include above($tablet) {
+    border-bottom: 1px solid lightgrey;
+  }
+}
 .logo-container {
+  @include above($tablet) {
+    // float: left;
+    display: table-cell;
+    vertical-align: middle;
+  }
   @include below($tablet) {
     width: 50%;
     text-align: left;

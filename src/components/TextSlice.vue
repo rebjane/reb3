@@ -1,8 +1,8 @@
 <template>
   <div class="text-slice">
     <div class="text-slice-inner">
-      <h2>{{$cms.textField(data.text_title)}}</h2>
-      <p>{{$cms.textField(data.text_body)}}</p>
+      <h2>{{$cms.textField(workdata.text_title)}}</h2>
+      <p>{{$cms.textField(workdata.text_body)}}</p>
     </div>
   </div>
 </template>
@@ -18,14 +18,18 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      workdata: null,
+    };
   },
   beforeDestroy() {},
   computed: {
     // ...mapState(["signatureLoaded", "loadPct", "loaded", "navOpen"])
   },
   methods: {},
-  mounted() {},
+  mounted() {
+    this.workdata = this.data.items[0];
+  },
 };
 </script>
 
@@ -33,9 +37,8 @@ export default {
 <style lang="scss" scoped>
 @import "../styles.scss";
 .text-slice-inner {
-  @include above($tablet) {
-    max-width: 50%;
-  }
+  text-align: left;
+
   margin: auto;
 }
 h2 {

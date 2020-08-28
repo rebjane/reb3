@@ -85,7 +85,7 @@ ul {
 a {
   text-decoration: none;
   font-size: 12px;
-  padding: 0 3em;
+  padding: 0 1em;
   text-transform: uppercase;
   @include below($tablet) {
     font-size: 20px;
@@ -96,8 +96,7 @@ a {
     display: inline-block;
     margin: 0 10px;
   }
-  border-bottom: 1px solid lightgrey;
-  padding-bottom: 30px;
+  // padding-bottom: 30px;
   @include below($tablet) {
     display: none;
   }

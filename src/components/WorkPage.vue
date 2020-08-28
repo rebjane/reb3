@@ -5,26 +5,34 @@
       <!-- <SlidingText v-if="desc" :text="desc" /> -->
       <div class="grid" ref="grid">
         <div :ref="`item-${i}`" class="grid-item" v-for="(item, i) in work" :key="i">
-          <!-- <a :href="item.uid"> -->
-          <Logo class="logo" :fill="'white'" />
-          <img :src="item.data.feature_image.url || item.data.anim_link.url" />
-          <!-- </a> -->
+          <a :href="item.uid">
+            <Logo class="logo" :fill="'white'" />
+            <img draggable="false" :src="item.data.feature_image.url || item.data.anim_link.url" />
+          </a>
         </div>
       </div>
     </div>
     <div v-else-if="specificwork" class="workspecific-page">
       <!-- {{specificwork.data.title}} -->
-      <div class="title">
-        <h1>{{$cms.textField(specificwork.data.title)}}</h1>
-      </div>
-      <div class="feature-image" v-if="specificwork.data.feature_image.url">
-        <img :src="specificwork.data.feature_image.url" />
+      <div class="top-content">
+        <div class="title">
+          <h1 v-if="specificwork.data.title">{{$cms.textField(specificwork.data.title)}}</h1>
+          <p v-if="specificwork.data.description">{{$cms.textField(specificwork.data.description)}}</p>
+        </div>
+        <div class="feature-image" v-if="specificwork.data.feature_image.url">
+          <div
+            class="image"
+            :style="`background-image: url(${specificwork.data.feature_image.url})`"
+          >
+            <img draggable="false" :src="specificwork.data.feature_image.url" />
+          </div>
+        </div>
       </div>
 
       <transition v-for="(item, i) in specificwork.data.body" :key="i">
         <!-- <div> -->
         <!-- <p>{{item}}</p> -->
-        <component :is="item.slice_type" :data="item.items[0]" />
+        <component :is="item.slice_type" :data="item" />
         <!-- </div> -->
       </transition>
     </div>
@@ -35,12 +43,14 @@
 <script>
 // import SlidingText from "./SlidingText.vue";
 import TextSlice from "./TextSlice.vue";
+import ImageOrVideo from "./ImageOrVideo.vue";
 import Logo from "../Logo.vue";
 export default {
   name: "WorkPage",
   components: {
     // SlidingText,
     TextSlice,
+    ImageOrVideo,
     Logo,
   },
   props: {
@@ -147,10 +157,25 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "../styles.scss";
-
+.top-content {
+  display: block;
+}
+.workspecific-page {
+  @include above($tablet) {
+    padding: 0 100px;
+  }
+}
+.title {
+  @include above($tablet) {
+    vertical-align: middle;
+    display: table-cell;
+    width: 50%;
+  }
+}
 .feature-image {
   @include above($tablet) {
-    width: 50%;
+    display: table-cell;
+    width: 30%;
     img {
       width: 100%;
     }
@@ -204,6 +229,12 @@ h1 {
   font-family: "Suisse Works";
   font-size: 50px;
   margin-top: 0;
+  text-align: left;
+}
+p {
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
+  text-align: left;
 }
 .logo {
   position: absolute;
@@ -213,5 +244,15 @@ h1 {
   width: 10%;
   mix-blend-mode: difference;
   z-index: 1;
+}
+.image {
+  background-size: contain;
+  max-height: 80vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  img {
+    opacity: 0;
+    width: 100%;
+  }
 }
 </style>
