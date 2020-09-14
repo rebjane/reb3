@@ -1,15 +1,8 @@
 <template>
-  <div class="image-or-video">
-    <div
-      v-if="data.primary.media.kind === 'image'"
-      class="image"
-      :style="`background-image: url(${data.primary.media.url})`"
-    >
-      <img :src="data.primary.media.url" />
-    </div>
-    <div v-else class="video">
-      <!-- {{data}} -->
-      <video :src="data.primary.media.url" controls />
+  <div class="image-fullscreen">
+    <!-- {{data.primary.image.url}} -->
+    <div class="image" :style="`background-image: url(${data.primary.image.url})`">
+      <img :src="data.primary.image.url" />
     </div>
   </div>
 </template>
@@ -54,27 +47,21 @@ li {
 a {
   color: #42b983;
 }
-.image-or-video {
+.image-fullscreen {
+  //   position: relative;
+  height: 80vh;
   padding: 2em 0;
-  // border: 1px solid grey;
 }
 .image {
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  max-height: 80vh;
+  position: absolute;
+  height: 80vh;
+
+  left: 0;
   img {
     opacity: 0;
-    width: 100%;
-  }
-}
-.video {
-  max-height: 80vh;
-
-  video {
-    &:focus {
-      outline: none;
-    }
     width: 100%;
   }
 }

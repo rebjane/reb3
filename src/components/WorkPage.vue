@@ -44,6 +44,9 @@
 // import SlidingText from "./SlidingText.vue";
 import TextSlice from "./TextSlice.vue";
 import ImageOrVideo from "./ImageOrVideo.vue";
+import ImageFullScreen from "./ImageFullScreen.vue";
+import ImageGallery from "./ImageGallery.vue";
+
 import Logo from "../Logo.vue";
 export default {
   name: "WorkPage",
@@ -51,6 +54,8 @@ export default {
     // SlidingText,
     TextSlice,
     ImageOrVideo,
+    ImageFullScreen,
+    ImageGallery,
     Logo,
   },
   props: {
